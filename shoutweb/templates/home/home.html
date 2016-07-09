@@ -1,0 +1,106 @@
+{% extends "layouts/master.html" %}
+<!-- { load filters } -->
+
+{% block head_begin %}
+
+
+{% endblock %}
+
+
+{% block head_end %}
+{% endblock %}
+
+{% block content %}
+
+
+{% if messages %}
+<ul class="flash-messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+
+<div class="jumbotron">
+  <div class="jumbotron-information">
+    <h1 id="jumbotron-header-main">SHOUT</h1>
+    <p id="write-a-review">write a review</p>
+    <p>
+      <!-- <form class="form-inline" id="subscribe-form"> -->
+      <form class="form" id="post-review" hidden>
+        <div class="form-group">
+
+        <!-- <input type="company" class="form-control" id="company-input" placeholder="company"/> -->
+          <div class="form-group">
+            <select class="form-control" id="company-input" >
+              <option unselected>Company</option>
+              {% for c in companies %}
+                <option>{{ c.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <input type="rating" class="form-control" id="rating-input" placeholder="rating"/>
+          <textarea type="review" class="form-control" id="review-input" placeholder="review here"></textarea>
+          <input type="reason" class="form-control" id="reason-input" placeholder="why did you use this company?"/>
+          <button type="button" class="btn btn-default" id="submit-review" onclick="hookup()">POST</button>
+
+        </div>
+      </form>
+    </p>
+    <p id="slogan">make your voice count</p>
+  </div>
+</div>
+
+<div class="page-content">
+  <div class="row">
+    <!-- <div id="column1" class="col-sm-6 col-md-4"> -->
+    <div class="col-md-4" id="companies-column-left">
+      <h1 id="companies-header">COMPANIES</h1>
+      {% for company in companies %}
+      <div class="company-box">
+        <a href="companies/{{ company.id }}" id="name">{{ company.name }}</a>
+        <div id="rating">Rating: {{ company.rating }}/10</div>
+        <div id="description">{{ company.description }}</div>
+      </div>
+      <div id="clear-space">
+      </div>
+      {% endfor %}
+    </div>
+
+
+    <div class="col-md-8" id="reviews-column-right">
+    <h1 id="reviews-header">REVIEWS</h1>
+    {% for review in reviews %}
+    <div class="review-box">
+      <a href="companies/{{ review.company.id }}" id="review-company-name">{{ review.company.name }}</a>
+      <div id="review-rating">{{ review.review_rating }} / 10</div>
+      <div id="body">{{ review.body }}</div>
+      <div id="reason">Reason for using: {{ review.reason }}</div>
+      <div id="create-date">{{ review.create_date }}</div>
+    </div>
+    {% endfor %}
+    </div>
+  </div>
+
+
+  <div class="row">
+
+	</div>
+</div>
+
+
+<script>
+
+  $('#column1').masonry({
+    // options
+    itemSelector: '.grid-item',
+    columnWidth: 200
+  });
+
+</script>
+
+</div>
+
+{% endblock %}
+

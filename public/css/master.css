@@ -1,0 +1,115 @@
+#master-container {
+  font-family: helvetica;
+}
+.container-fluid {
+  padding: 0px;
+}
+.navbar {
+  margin-bottom: 0;
+}
+a:hover {
+  text-decoration: none;
+}
+.page-content {
+  margin-left: 15px;
+  margin-right: 15px;
+  max-width: 1200px;
+  margin: auto;
+  font-family: 'Open Sans', sans-serif;
+}
+.page-content #reviews-header,
+.page-content #companies-header {
+  font-family: 'Poiret One', cursive;
+  text-align: center;
+}
+.page-content .company-box {
+  border: 1px solid #808080;
+  background: light-gray;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  overflow: hidden;
+  clear: both;
+}
+.page-content .company-box #name {
+  font-size: 18px;
+  color: #1ca0de;
+}
+.page-content #clear-space {
+  height: 25px;
+  background: #fff;
+}
+.page-content .review-box {
+  border-bottom: 1px solid #808080;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  overflow: hidden;
+  clear: both;
+}
+.page-content .review-box #review-company-name {
+  font-size: 18px;
+  color: #1ca0de;
+}
+.page-content .review-box #questions,
+.page-content .review-box #create-date {
+  font-size: 10px;
+}
+.page-content .main-review {
+  border-bottom: 1px solid #808080;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+.page-content .main-review #review-rating {
+  font-size: 18px;
+  color: #1ca0de;
+}
+.page-content .main-review #create-date {
+  font-size: 10px;
+}
+.jumbotron {
+  background-color: #ffc0cb;
+  margin-bottom: 0;
+  border-radius: none;
+}
+.jumbotron #jumbotron-header-main {
+  text-align: center;
+  font-size: 18;
+  font-family: 'Poiret One', cursive;
+}
+.jumbotron #slogan {
+  text-align: center;
+  font-family: 'Poiret One', cursive;
+}
+.jumbotron #write-a-review {
+  text-align: center;
+}
+.jumbotron #write-a-review:hover {
+  cursor: pointer;
+}
+.jumbotron #rating-input,
+.jumbotron #company-input {
+  width: 150px;
+}
+.jumbotron #review-input {
+  width: 500px;
+  height: 200px;
+}
+.jumbotron #reason-input {
+  width: 500px;
+}
+.jumbotron #featured {
+  text-align: center;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 14px;
+}
+.jumbotron #company-name,
+.jumbotron #company-rating,
+.jumbotron #featured-company-name,
+.jumbotron #featured-company-rating {
+  text-transform: uppercase;
+  font-size: 32px;
+  text-align: center;
+  font-family: 'Poiret One', cursive;
+}

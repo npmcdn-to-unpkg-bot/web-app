@@ -1,0 +1,63 @@
+{% extends "layouts/master.html" %}
+<!-- { load filters } -->
+
+{% block head_begin %}
+{% endblock %}
+
+{% block head_end %}
+{% endblock %}
+
+{% block content %}
+
+
+{% if messages %}
+<ul class="flash-messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+
+<div class="jumbotron">
+  <div class="jumbotron-information">
+    <p id="featured">Featured Company</p>
+    <div id="featured-company">
+      <div id="featured-company-name">{{ featured_company.name }}</div>
+      <div id="featured-company-rating">{{ featured_company.rating }}/10</div>
+      <div id="featured-company-description">{{ featured_company.description }}</div>
+    </div>
+  </div>
+</div>
+
+<div class="page-content">
+  <div class="row">
+    <!-- <div id="column1" class="col-sm-6 col-md-4"> -->
+    <div class="col-md-3" id="companies-column-left">
+
+    </div>
+
+
+    <div class="col-md-6" id="reviews-column-right">
+      {% for company in companies %}
+      <div class="company-box">
+        <div id="name">{{ company.name }}</div>
+        <div id="rating">Rating: {{ company.rating }}/10</div>
+        <div id="description">{{ company.description }}</div>
+      </div>
+      {% endfor %}
+    </div>
+
+
+    <div class="col-md-3" id="companies-column-left">
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+{% endblock %}
