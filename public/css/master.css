@@ -23,11 +23,11 @@ a:hover {
   text-align: center;
 }
 .page-content .company-box {
-  border: 1px solid #808080;
+  border-bottom: 1px solid #808080;
   background: light-gray;
   margin-top: 10px;
   margin-bottom: 10px;
-  padding: 10px;
+  padding: 10px 10px 25px 10px;
   overflow: hidden;
   clear: both;
 }
@@ -67,6 +67,33 @@ a:hover {
 }
 .page-content .main-review #create-date {
   font-size: 10px;
+}
+.page-content #review-tag-links {
+  text-align: center;
+}
+.page-content #review-tag-links .review-tag {
+  margin-right: 20px;
+  color: #00f;
+}
+.page-content #trending-up-container {
+  border: 1px solid #808080;
+  padding: 15px;
+  margin-bottom: 25px;
+}
+.page-content #trending-up-container #trending-up-header {
+  color: #008000;
+  text-align: center;
+  font-family: 'Poiret One', cursive;
+}
+.page-content #trending-down-container {
+  border: 1px solid #808080;
+  padding: 15px;
+  margin-bottom: 25px;
+}
+.page-content #trending-down-container #trending-down-header {
+  color: #f00;
+  text-align: center;
+  font-family: 'Poiret One', cursive;
 }
 .jumbotron {
   background-color: #ffc0cb;

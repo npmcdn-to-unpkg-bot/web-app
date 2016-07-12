@@ -70,6 +70,10 @@ class Company(ObjectModel):
         return "%s: %s" % (self.name, self.rating)
 
 
+### Grouping / Industry should borderline be a one-to-one...?
+
+
+
 class Review(ObjectModel):
     company = ForeignKey('Company', related_name='reviews')
     body = TextField(null=True, blank=True)

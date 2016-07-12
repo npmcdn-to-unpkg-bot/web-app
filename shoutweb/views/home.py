@@ -10,6 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.template import TemplateDoesNotExist
 from shoutweb.models import *
 from . import *
+from shoutweb import api
 
 
 
@@ -17,20 +18,30 @@ from . import *
 
 
 def home(request):
-    ctx = {}
-    ctx['PAGE_TITLE'] = 'SHOUT'
-
-    ctx['yo'] = "hey welcome"
-
-    ctx['companies'] = Company.objects.all().order_by('-create_date')
-    ctx['reviews'] = Review.objects.all().order_by('-create_date')
+	ctx = {}
+	ctx['PAGE_TITLE'] = 'SHOUT'
+	ctx['companies'] = Company.objects.all().order_by('-create_date')
+	ctx['reviews'] = Review.objects.all().order_by('-create_date')
+	ctx['review_tags'] = ReviewTag.objects.all()
 
 
-    # if not request.GET.get('nologin') and request.user.is_authenticated():
-    #     role = utils.get_user_role(request.user)
-    #     return base.redirect('/' + role)
+	print(ctx['reviews'])
+	for e in ctx['reviews']:
+		print(e.tags)
+	# if not request.GET.get('nologin') and request.user.is_authenticated():
+	#     role = utils.get_user_role(request.user)
+	#     return base.redirect('/' + role)
 
-    return base.render(request, 'home/home', ctx)
+
+	ctx['trending_up'] =  api.get_positive_trending_companies()
+	ctx['trending_down']  =  api.get_negative_trending_companies()
+
+
+	return base.render(request, 'home/home', ctx)
+
+
+def search(request, sample):
+	print(request)
 
 
 def companies(request):
@@ -76,6 +87,7 @@ def post_review(request):
 	rt = request.POST.get('rating')
 	rv = request.POST.get('review')
 	rs = request.POST.get('reason')
+	tag = request.POST.get('tag')
 
 	try:
 		reviewed_company=Company.objects.get(name=co)
@@ -85,6 +97,13 @@ def post_review(request):
 
 	new_review=Review(company=reviewed_company, review_rating=rt, body=rv, reason=rs)
 	new_review.save()
+
+	try:
+		review_tag = ReviewTag.objects.get(name=tag)
+		new_review.tags = [review_tag]
+		new_review.save()
+	except:
+		print("COULDN'T SAVE THAT TAG")
 
 	print("Saved the review")
 	return base.render(request, 'home/home', ctx)

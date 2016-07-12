@@ -3,6 +3,11 @@ $(document).ready(function() {
 		$("#write-a-review").hide();
 		$("#post-review").show();
 	})
+
+	$(".js-example-placeholder-multiple").select2({
+	  placeholder: "Select a company"
+	});
+
 })
 
 // $('form#post-review').submit(function(evt) {
@@ -14,12 +19,14 @@ function hookup() {
 	rating=$("#rating-input").val();
 	review=$("#review-input").val();
 	reason=$("#reason-input").val();
+	tag=$("#tag-input").val();
 
 	dataToSend = {
 		'company': company,
 		'rating': rating,
 		'review': review,
-		'reason': reason
+		'reason': reason,
+		'tag': tag
 	}
 	console.log(dataToSend)
 

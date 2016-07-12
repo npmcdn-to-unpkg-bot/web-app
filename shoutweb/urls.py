@@ -30,6 +30,11 @@ urlpatterns = patterns('',
     url(r'^companies$', home.companies),
     url(r'^companies/(\w*)$', home.show_company),
 
+    url(r'^search/([-\w]+)$', home.search),
+    # url(r'^search/?search=([-\w]+)/$', home.search),
+    # url(r'^search/(?P<search>[\w]+)/$', home.search),
+
+
     # url(r'^about/$', home.about),
     # url(r'^about/(\w+)/$', home.bio),
     # url(r'^blog/([-\w]+)/$', blog.blog_article),
