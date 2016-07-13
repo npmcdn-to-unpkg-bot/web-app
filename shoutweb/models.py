@@ -61,17 +61,33 @@ class Company(ObjectModel):
     hq_city = CharField(max_length=50)
     hq_state = CharField(max_length=2)
     rating = IntegerField(default=5) #out of 10
+    groups = ManyToManyField('CompanyGroup', null=True, blank=True, db_table='company_group_map')
 
     class Meta:
         db_table = 'company'
 
     def __str__(self):
-        # return "{}: {}".format(self.user_id, self.message)
         return "%s: %s" % (self.name, self.rating)
+        # return "{}: {}".format(self.user_id, self.message)
+
+    def get_rating(self):
+        temp=0
+        ct=0
+        for e in Review.objects.filter(company=self, is_deleted=False):
+            temp += e.review_rating
+            ct +=1
+        self.rating = int(temp / ct)
+        self.save()
+        return self.rating
 
 
 ### Grouping / Industry should borderline be a one-to-one...?
+class CompanyGroup(ObjectModel):
+    slug = CharField(max_length=100, null=True, blank=True, unique=True, help_text='all lowercase, dashes and no spaces!')
 
+    class Meta:
+        db_table = 'company_group'
+        verbose_name = 'Company Group'
 
 
 class Review(ObjectModel):

@@ -77,13 +77,24 @@ WSGI_APPLICATION = 'shoutweb.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+try:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+            'NAME': 'shout1db',
+            'USER': 'root',
+            'PASSWORD': '',
+            'HOST': 'localhost',
+            'PORT': '3306',
+        },
     }
-}
+except:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
@@ -135,3 +146,69 @@ except:
     TEMPLATE_DIRS = (
         os.path.join(BASE_DIR, 'shoutweb', 'templates/'),
     )
+
+
+try:
+    LOGGING = settings_local.LOGGING
+except:
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'formatters': {
+            'standard': {
+                'format': '[%(asctime)s] [%(levelname)s] [%(module)s:%(lineno)s] %(message)s'
+            },
+            'tracer': {
+                'format': '[%(asctime)s] [TRACE] %(message)s'
+            },
+        },
+        # 'filters': {
+        #     'require_debug_false': {
+        #         '()': 'django.utils.log.RequireDebugFalse'
+        #     }
+        # },
+        'handlers': {
+            # 'mail_admins': {
+            #     'level': 'ERROR',
+            #     'filters': ['require_debug_false'],
+            #     'class': 'django.utils.log.AdminEmailHandler'
+            # },
+            'console': {
+                'level':'DEBUG',
+                'class':'logging.StreamHandler',
+                'formatter': 'standard'
+            },
+            'tracer': {
+                'level':'DEBUG',
+                'class':'logging.StreamHandler',
+                'formatter': 'tracer'
+            },
+        },
+        'loggers': {
+            'shoutweb': {
+                'handlers': ['console'],
+                'level': 'DEBUG',
+                'propagate': False,
+            },
+            # 'django.request': {
+            #     'handlers': ['mail_admins'],
+            #     'level': 'ERROR',
+            #     'propagate': True,
+            # },
+            'django.db': {
+                'handlers': ['console'],
+                'level': 'INFO',
+                'propagate': False,
+            },
+            'django': {
+                'handlers': ['console'],
+                'level': 'DEBUG',
+                'propagate': False,
+            },
+            'TRACER': {
+                'handlers': ['tracer'],
+                'level': 'DEBUG',
+                'propagate': False,
+            },
+        }
+    }

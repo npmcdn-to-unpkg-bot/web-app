@@ -55,6 +55,7 @@ class CompanyAdmin(admin.ModelAdmin):
             'fields': (
                 ('name', 'rating','hq_city', 'hq_state'),
                 ('description'),
+                ('groups'),
                 ('is_deleted'),
             )
         }),
@@ -88,6 +89,24 @@ class CompanyAdmin(admin.ModelAdmin):
     #     return super(BlogAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
 
 # site.register(company, CompanyAdmin)
+
+
+
+@admin.register(CompanyGroup)
+class CompanyGroupAdmin(ModelAdmin):
+    # form = BlogTagForm
+    save_on_top = True
+    list_display = ['name']
+    search_fields = ['name']
+    fieldsets = (
+        (None, {
+            'fields': (
+                ('name', 'is_deleted'),
+                ('slug'),
+            )
+        }),
+    )
+
 
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):

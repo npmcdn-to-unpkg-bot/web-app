@@ -1,4 +1,4 @@
-# import logging
+import logging
 # import traceback
 # from web import utils
 from shoutweb.views import base
@@ -14,7 +14,7 @@ from shoutweb import api
 
 
 
-# logger = logging.getLogger(__name__)
+logger = logging.getLogger(__name__)
 
 
 def home(request):
@@ -33,6 +33,7 @@ def home(request):
 	#     return base.redirect('/' + role)
 
 
+	logger.info("YOO")
 	ctx['trending_up'] =  api.get_positive_trending_companies()
 	ctx['trending_down']  =  api.get_negative_trending_companies()
 

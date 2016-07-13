@@ -29,7 +29,7 @@ def render(request, template, ctx=None):
         # parts.pop(1)  
         # ctx['PAGE_TITLE'] = ' | '.join(parts)
 
-    # ctx['BODY_CLASS'] = ctx.get('BODY_CLASS') or ' '.join(template.split('/'))
+    ctx['BODY_CLASS'] = ctx.get('BODY_CLASS') or ' '.join(template.split('/'))
     # ctx['const'] = const
 
     return shortcuts.render(request, template + '.html', ctx)
