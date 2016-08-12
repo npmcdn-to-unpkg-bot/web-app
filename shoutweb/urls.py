@@ -7,7 +7,7 @@ from django.conf.urls import *
 # from shoutweb.decorators import *
 # from shoutweb.views import admin as force_admin
 # from shoutweb.views import home
-from shoutweb.views import home
+from shoutweb.views import home, api
 # from . import views
 
 
@@ -24,16 +24,34 @@ urlpatterns = patterns('',
 
     ### Marketing Pages ###
     url(r'^$', home.home),
-    url(r'^post_review/$', home.post_review),
+    # url(r'^post_review/$', home.post_review),
     
 
+    url(r'^stats/$', home.stats),
     url(r'^companies$', home.companies),
     url(r'^companies/(\w*)$', home.show_company),
 
+
+
+    url(r'^groups/([-\w]+)$', home.groups),
+
+
+
     url(r'^search/([-\w]+)$', home.search),
+    url(r'^contact/$', home.contact),
+
     # url(r'^search/?search=([-\w]+)/$', home.search),
     # url(r'^search/(?P<search>[\w]+)/$', home.search),
 
+    url(r'^signup/$', home.signup),
+    url(r'^login/$', home.login),
+
+
+    url(r'^logout/$', api.logout_user),    
+    url(r'^api/login_user/$', api.login_user),
+    url(r'^api/logout_user/$', api.logout_user),
+    url(r'^api/create_user/$', api.create_user),
+    url(r'^api/post_review/$', api.post_review),
 
     # url(r'^about/$', home.about),
     # url(r'^about/(\w+)/$', home.bio),

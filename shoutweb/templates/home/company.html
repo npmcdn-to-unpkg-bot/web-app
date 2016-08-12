@@ -9,21 +9,18 @@
 
 {% block content %}
 
-
-{% if messages %}
-<ul class="flash-messages">
-    {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
-
-
 <div class="jumbotron">
   <div class="jumbotron-information">
     <div id="company">
-      <div id="company-name">{{ company.name }}</div>
-      <div id="company-rating">{{ company.rating }}/10</div>
+      <h1 id="jumbotron-header-main">{{ company.name }}</h1>
+      {% if groups %}
+        <div id="company-groups">
+          {% for grp in groups %}
+            <div class="company-group">{{ grp }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+      <div id="company-rating">Accountability: {{ company.rating }}</div>
       <div id="company-description">{{ company.description }}</div>
     </div>
   </div>

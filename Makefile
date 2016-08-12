@@ -22,8 +22,13 @@ usage:
 echo:
 	echo $$USER
 
+dbshell:
+	$(MANAGE) dbshell
 shell:
 	$(MANAGE) shell
+
+dev:
+	$(MANAGE) runserver
 
 runserver:
 	$(MANAGE) runserver

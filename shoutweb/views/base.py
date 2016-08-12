@@ -29,8 +29,13 @@ def render(request, template, ctx=None):
         # parts.pop(1)  
         # ctx['PAGE_TITLE'] = ' | '.join(parts)
 
-    ctx['BODY_CLASS'] = ctx.get('BODY_CLASS') or ' '.join(template.split('/'))
+    # ctx['BODY_CLASS'] = ctx.get('BODY_CLASS') or ' '.join(template.split('/'))
+    ctx['BODY_CLASS'] = "yup"
     # ctx['const'] = const
+    ctx['PAGE_TITLE'] = "SHOUT"
 
     return shortcuts.render(request, template + '.html', ctx)
 
+
+def redirect(to, *args, **kwargs):
+    return shortcuts.redirect(to, args, kwargs)

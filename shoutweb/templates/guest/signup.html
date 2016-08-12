@@ -1,0 +1,48 @@
+{% extends "layouts/guest.html" %}
+<!-- { load filters } -->
+
+{% block head_begin %}
+
+
+{% endblock %}
+
+
+{% block head_end %}
+{% endblock %}
+
+{% block content %}
+
+
+<div class="jumbotron">
+  <div class="jumbotron-information">
+    <h1 id="jumbotron-header-main"></h1>
+
+    <p>
+      <form class="form" id="signup-container">
+        <p id="signup-header">Sign Up</p>
+        <div class="form-group">
+          <div class="form-group">
+          <input class="form-control" id="first-name" placeholder="first name"/>
+          <input class="form-control" id="last-name" placeholder="last name"/>
+          <input class="form-control" id="email" placeholder="email"/>
+          <input type="password" class="form-control" id="password" placeholder="password"/>
+          <input type="password" class="form-control" id="password-confirm" placeholder="confirm password"/>
+          </div>
+
+          <button type="button" class="btn btn-default" id="submit-review" onclick="create_user()">sign up</button>
+        </div>
+
+        <a id="login-link" href="/login">log in</a>
+      </form>
+    </p>
+    <p id="slogan">make your voice count</p>
+  </div>
+</div>
+
+<div class="page-content">
+  <div class="row">
+
+	</div>
+</div>
+
+{% endblock %}

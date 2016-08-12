@@ -11,7 +11,6 @@ a:hover {
   text-decoration: none;
 }
 ul.flash-messages {
-  transition: all 0.4s ease-in-out;
   width: 100vw;
   color: #fff;
   margin-bottom: 0;
@@ -40,7 +39,7 @@ ul.flash-messages#info {
   text-align: center;
 }
 .page-content .company-box {
-  border-top: 1px solid #808080;
+  border-bottom: 1px solid #808080;
   background: light-gray;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -57,7 +56,7 @@ ul.flash-messages#info {
   background: #fff;
 }
 .page-content .review-box {
-  border-top: 1px solid #808080;
+  border-bottom: 1px solid #808080;
   margin-top: 10px;
   margin-bottom: 10px;
   padding: 10px;
@@ -113,14 +112,9 @@ ul.flash-messages#info {
   font-family: 'Poiret One', cursive;
 }
 .jumbotron {
-  transition: all 0.4s ease-in-out;
   background-color: #0ff;
   margin-bottom: 0;
   border-radius: none;
-  text-align: center;
-}
-.jumbotron a {
-  color: #000;
 }
 .jumbotron #jumbotron-header-main {
   text-align: center;
@@ -131,54 +125,38 @@ ul.flash-messages#info {
   text-align: center;
   font-family: 'Poiret One', cursive;
 }
-.jumbotron #write-a-review {
-  text-align: center;
-}
-.jumbotron #write-a-review:hover {
-  cursor: pointer;
-}
-.jumbotron #company-groups .company-group {
-  font-family: 'Quicksand', sans-serif;
-  font-size: 24px;
-}
-.jumbotron #post-review {
-  border: 1px solid #00f;
+.jumbotron #signup-container,
+.jumbotron #login-container {
+  width: 450px;
+  margin: auto;
+  border: 1px solid #808080;
   background: #fff;
+  padding: 25px;
   text-align: center;
-  width: 700px;
-  margin: auto;
-  padding-top: 25px;
 }
-transition: width 2s #rating-input,
-transition: width 2s #company-input {
-  width: 150px;
-  margin: auto;
-}
-transition: width 2s #review-input {
-  width: 500px;
-  height: 200px;
-  margin: auto;
-}
-transition: width 2s #tag-input {
-  width: 150px;
-  margin: auto;
-}
-transition: width 2s #reason-input {
-  width: 250px;
-  margin: auto;
-}
-transition: width 2s #featured {
+.jumbotron #signup-container #signup-header,
+.jumbotron #login-container #signup-header,
+.jumbotron #signup-container #login-header,
+.jumbotron #login-container #login-header {
   text-align: center;
-  font-family: 'Quicksand', sans-serif;
-  font-size: 14px;
 }
-#company-name #company-rating,
-#company-name #featured-company-name,
-#company-name #featured-company-rating {
-  text-transform: uppercase;
-  font-size: 32px;
-  text-align: center;
-  font-family: 'Poiret One', cursive;
-  margin-bottom: 10px;
-  line-height: 34px;
+.jumbotron #signup-container input#first-name.form-control,
+.jumbotron #login-container input#first-name.form-control,
+.jumbotron #signup-container input#last-name.form-control,
+.jumbotron #login-container input#last-name.form-control,
+.jumbotron #signup-container input#email.form-control,
+.jumbotron #login-container input#email.form-control,
+.jumbotron #signup-container input#password.form-control,
+.jumbotron #login-container input#password.form-control,
+.jumbotron #signup-container input#password-confirm.form-control,
+.jumbotron #login-container input#password-confirm.form-control {
+  width: 400px;
+  margin-bottom: 5px;
+}
+.jumbotron #signup-container a#signup-link,
+.jumbotron #login-container a#signup-link,
+.jumbotron #signup-container a#login-link,
+.jumbotron #login-container a#login-link {
+  font-size: 10px;
+  color: #808080;
 }

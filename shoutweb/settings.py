@@ -62,12 +62,28 @@ DEBUG_TOOLBAR_PANELS = [
     'debug_toolbar.panels.request.RequestPanel',
     'debug_toolbar.panels.sql.SQLPanel',
     # 'debug_toolbar.panels.staticfiles.StaticFilesPanel',
-    # 'debug_toolbar.panels.templates.TemplatesPanel',
+    # 'debug_toolbar.panels.templates.TemplatesPanel'
     # 'debug_toolbar.panels.cache.CachePanel',
     # 'debug_toolbar.panels.signals.SignalsPanel',
     # 'debug_toolbar.panels.logging.LoggingPanel',
     # 'debug_toolbar.panels.redirects.RedirectsPanel',
 ]
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    # 'django.core.context_processors.debug',
+    # 'django.core.context_processors.i18n',
+    # 'django.core.context_processors.media',
+    # 'django.core.context_processors.static',
+    # 'django.core.context_processors.tz',
+    'django.template.context_processors.debug',
+    'django.template.context_processors.i18n',
+    'django.template.context_processors.media',
+    'django.template.context_processors.static',
+    'django.template.context_processors.tz',
+    'django.contrib.messages.context_processors.messages',
+    'django.template.context_processors.request',
+)
 
 
 ROOT_URLCONF = 'shoutweb.urls'

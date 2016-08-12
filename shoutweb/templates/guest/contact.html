@@ -1,0 +1,85 @@
+{% extends "layouts/guest.html" %}
+{% block content %}
+
+<div class="guest-jumbotron" id="contact"></div>
+
+<div class="content">
+  <div id="contact-container" class="widget">
+    <div id="contact-form-header">CONTACT FORM</div>
+
+    <ul class="tab-bar">
+      <li><a class="tab" name="user" href="#user-contact-container">User</a></li>
+      <li><a class="tab" name="company" href="#company-contact-container">Company</a></li>
+    </ul>
+
+    <div class="widget-content">
+      <div id="user-contact-container" class="tab-content">
+        <form class="user-contact" method="post">{% csrf_token %}
+          </br>
+          <div class="form-item" id="same-line-left">
+            <input id="contact-user-first-name" type="contact-info" placeholder="First Name" required/>
+          </div>
+          <div class="form-item" id="same-line-right">
+            <input id="contact-user-last-name" type="contact-info" placeholder="Last Name" required/>
+          </div>
+          <div class="form-item">
+            <input id="contact-user-email" type="contact-info" placeholder="Email" required/>
+          </div>
+          <div class="form-item">
+            <textarea id="contact-user-message" rows="5" data-min-rows="2" data-max-rows="10" placeholder="Message"></textarea>
+          </div>
+          <button id="submit-user-message" type="submit">Contact Us</button>
+        </form>
+      </div>
+
+
+      <div id="company-contact-container" class="tab-content" hidden>
+        <form class="company-contact" method="post">{% csrf_token %}
+          </br>
+          <div class="form-item" id="same-line-left">
+            <input id="contact-company-first-name" type="contact-info" placeholder="First Name" required/>
+          </div>
+          <div class="form-item" id="same-line-right">
+            <input id="contact-company-last-name" type="contact-info" placeholder="Last Name" required/>
+          </div>
+          <div class="form-item">
+            <input id="contact-company-email" type="contact-info" placeholder="Email" required/>
+          </div>
+          <div class="form-item">
+          <input id="contact-company-company" type="contact-info" placeholder="Company Name" required/>
+          </div>
+          <div class="form-item">
+            <input id="contact-company-number" type="contact-info" placeholder="Phone Number" required/>
+          </div>
+          <div class="form-item">
+            <textarea id="contact-company-message" rows="5" data-min-rows="2" data-max-rows="10" placeholder="Message"></textarea>
+          </div>
+          <button id="submit-company-message" type="submit">Contact Us</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="footer">
+    <div class="end-of-article">
+      <div class="row">
+        <div class="col-md-12">
+          <span id="left-footer">
+          &copy;	2016 SHOUT
+          <a class="footer-link-left" href="/terms">Terms</a>
+          <a class="footer-link-left" href="/privacy">Privacy</a>
+          <a class="footer-link-left" href="/contact">Contact</a>
+          </span>
+          <span class="pull-right">
+            <a class="footer-link-right" href="/about">About</a>
+            <a class="footer-link-right" href="/blog">Blog</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

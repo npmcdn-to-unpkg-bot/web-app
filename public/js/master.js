@@ -8,6 +8,13 @@ $(document).ready(function() {
 	  placeholder: "Select a company"
 	});
 
+
+	// flash message disappear
+	setTimeout((function() {
+	  return $('.flash-messages').fadeOut('slow');
+	}), 3000);
+
+
 })
 
 // $('form#post-review').submit(function(evt) {
@@ -30,7 +37,7 @@ function hookup() {
 	}
 	console.log(dataToSend)
 
-	$.post( "post_review/", dataToSend)
+	$.post( "api/post_review/", dataToSend)
 		.done(function(returnedData) {
 			// alert("Returned:" + returnedData);
 			location.reload()

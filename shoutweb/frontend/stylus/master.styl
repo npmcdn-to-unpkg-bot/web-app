@@ -12,6 +12,25 @@
 a:hover
 	text-decoration: none
 
+
+ul.flash-messages
+	transition: all .4s ease-in-out
+	width:100vw
+	color: white
+	margin-bottom:0
+	list-style: none
+	text-align: center
+	padding:10px
+	height:40px
+	width:100vw	
+
+	&#error
+		background: #e04646
+
+	&#info
+		background: #05cc47
+
+		
 .page-content
 	margin-left: 15px
 	margin-right: 15px
@@ -27,7 +46,7 @@ a:hover
 	.company-box
 		// height:250px
 		// border: 1px solid gray
-		border-bottom: 1px solid gray
+		border-top: 1px solid gray
 		background: light-gray
 		margin-top:10px
 		margin-bottom:10px
@@ -46,7 +65,7 @@ a:hover
 		// padding-bottom:10px
 
 	.review-box
-		border-bottom: 1px solid gray
+		border-top: 1px solid gray
 		margin-top:10px
 		margin-bottom:10px
 		padding: 10px
@@ -103,9 +122,14 @@ a:hover
 			font-family: 'Poiret One', cursive;
 
 .jumbotron
-	background-color: pink
+	transition: all .4s ease-in-out
+	background-color: cyan
 	margin-bottom:0
 	border-radius:none
+	text-align: center
+	
+	a 
+		color: black
 
 	#jumbotron-header-main
 		text-align: center
@@ -122,25 +146,45 @@ a:hover
 		
 		&:hover
 			cursor:pointer
-			
-		
-	#rating-input
-	#company-input
-		width:150px
 	
-	#review-input
-		width: 500px
-		height: 200px
-	
-	#reason-input
-		width: 500px
+	#company-groups
+		.company-group
+			// font-family: 'Poiret One', cursive
+			font-family: 'Quicksand', sans-serif
+			font-size: 24px
 
-
-	#featured
+	#post-review
+		border: 1px solid blue
+		background: white
 		text-align: center
-		font-family: 'Quicksand', sans-serif
-		font-size: 14px
-	
+		width: 700px
+		margin: auto
+		padding-top:25px
+    	transition: width 2s 
+		
+		#rating-input
+		#company-input
+			width:150px
+			margin: auto
+
+		#review-input
+			width: 500px
+			height: 200px
+			margin: auto
+
+		#tag-input
+			width: 150px
+			margin: auto
+
+		#reason-input
+			width: 250px
+			margin: auto
+
+		#featured
+			text-align: center
+			font-family: 'Quicksand', sans-serif
+			font-size: 14px	
+
 	#company-name
 	#company-rating
 	#featured-company-name
@@ -149,6 +193,8 @@ a:hover
 		font-size:32px
 		text-align: center
 		font-family: 'Poiret One', cursive
+		margin-bottom:10px
+		line-height:34px
 	
 // .small-jumbotron
 // 	background-color:yellow

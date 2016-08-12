@@ -46,10 +46,11 @@
 
             <div class="navbar-collapse collapse navbar-left">
               <ul class="nav navbar-nav">
-                <li><a class="bold-link" href="/">HOME</a></li>
-                <li><a class="bold-link" href="/companies">COMPANIES</a></li>
-                <li><a class="bold-link" href="/utilities">AIRLINES</a></li>
-                <li><a class="bold-link" href="/utilities">UTILITIES</a></li>
+                <li><a class="bold-link" href="/">Home</a></li>
+                <li><a class="bold-link" href="/companies">Companies</a></li>
+                <li><a class="bold-link" href="/groups/airlines">Airlines</a></li>
+                <li><a class="bold-link" href="/groups/cable-internet">Cable/Internet</a></li>
+                <li><a class="bold-link" href="/groups/communications-cellular">Cellular</a></li>
               </ul>
             </div>
 
@@ -62,17 +63,29 @@
                   <!-- <button type="submit" class="btn btn-default">Submit</button> -->
                 </form>
 
-                <li><a class="bold-link" href="/blog">ACCOUNT</a></li>
-                <li class="bold-link" id="login-button"><a href="/login">LOG IN</a></li>
+                {% if user.is_authenticated %}
+                  <li class="bold-link"><a href="/">{{ user.first_name }}</a></li>
+                <li><a class="bold-link" href="/logout">Log Out</a></li>
+                {% else %}
+                  <li class="bold-link" id="login-button"><a href="/login">Log In</a></li>                
+                {% endif %}
               </ul>
             </div>
         </nav>
-
+        {% if messages %}
+          {% for message in messages %}
+          <ul class="flash-messages" {% if message.tags %} id="{{ message.tags }}"{% endif %}>
+            <li>{{ message }}</li>
+          </ul>
+          {% endfor %}
+        {% endif %}
     </div>
 
     <div id="main">
       <div id="content">
         <div class="container-fluid">
+
+
           {% block content %}{% endblock %}
         </div>
       </div>

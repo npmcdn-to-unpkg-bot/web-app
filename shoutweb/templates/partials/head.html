@@ -6,9 +6,9 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="cleartype" content="on">
 
-  {% if ENV != 'PRODUCTION' %}
+  <!-- { if ENV != 'PRODUCTION' } -->
   <meta name="robots" content="noindex, nofollow" />
-  {% endif %}
+  <!-- { endif } -->
 
   <!--Open Graph for Facebook -->
   <meta property="og:site_name" content="Shoutapp" />
@@ -42,18 +42,14 @@
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
   <![endif]-->
 
-  {% if ENV == 'DEV' %}
-    <script src="//localhost:35729/livereload.js"></script>
-  {% endif %}
+  <!-- { if ENV == 'DEV' } -->
+    <!-- // <script src="//localhost:35729/livereload.js"></script> -->
+  <!-- { endif } -->
 
   <!-- below is the Force theme JQuery UI, no CDN available -->
 
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
 
   <script type="text/javascript">window.Shout = {};</script>
-  <!-- <script type="text/javascript">window.shout_timezone = "{{ force_timezone|default:'America/New_York' }}";</script>
-  <script type="text/javascript">window.shout_language = "{{ force_language|default:'us-en' }}";</script>
-  <script type="text/javascript">window.json_export = {{ json_export|default:"{}"|safe }};</script>
-  <script type="text/javascript">window.CDN_URL = "{{ CDN_URL }}";</script> -->
 
 
