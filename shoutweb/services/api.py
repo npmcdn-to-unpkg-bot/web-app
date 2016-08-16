@@ -65,7 +65,7 @@ def get_positive_trending_companies():
 	companies = Company.objects.all()
 
 	for co in companies:
-		reviews = Review.objects.filter(company = co).order_by('-create_date')[0:3]
+		reviews = Review.objects.filter(company = co).order_by('-create_date')[0:10]
 		mxx = 0
 		for rv in reviews:
 			mxx += rv.review_rating
@@ -83,7 +83,7 @@ def get_negative_trending_companies():
 	companies = Company.objects.all()
 
 	for co in companies:
-		reviews = Review.objects.filter(company = co).order_by('-create_date')[0:3]
+		reviews = Review.objects.filter(company = co).order_by('-create_date')[0:10]
 		mxx = 0
 		for rv in reviews:
 			mxx += rv.review_rating
@@ -104,7 +104,7 @@ def get_todays_reviews_count():
 
 
 def post_review(request, **kwargs):
-	print("SERVICES API CALL")
+	logger.info("API(Services): Post Review")
 	ctx={}
 	co = kwargs['company']
 	rt = kwargs['rating']
@@ -115,10 +115,11 @@ def post_review(request, **kwargs):
 	# uu = request.user
 
 	try:
-		reviewed_company=Company.objects.get(name=co)
+		reviewed_company=Company.objects.get(name__iexact=co)
 	except:
 		logger.debug("COMPANY NOT FOUND")
 
+	print(reviewed_company)
 
 	new_review=Review(company=reviewed_company, review_rating=rt, body=rv, reason=rs, user=uu)
 	new_review.save()
@@ -134,3 +135,15 @@ def post_review(request, **kwargs):
 		logger.info("COULDN'T SAVE THAT TAG")
 		# return base.redirect('/')
 		# return base.render(request, 'home/home', ctx)
+
+
+def get_company_names():
+	logger.info("API (Services): Calling get_company_names ")
+	ret = {}
+	g=[c.name for c in Company.objects.all()]
+	ret['companies'] = g
+	return ret
+
+
+
+

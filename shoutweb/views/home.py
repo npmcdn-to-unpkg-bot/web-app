@@ -97,8 +97,8 @@ def companies(request):
 
 	# messages.info(request, 'Companies!')
 
-	ctx['featured_company'] = Company.objects.filter(rating=max_rating)[0]
-
+	ctx['featured_company'] = featured_company = Company.objects.filter(rating=max_rating)[0]
+	ctx['featured_num_reviews'] = len(Review.objects.filter(company=featured_company))
 	return base.render(request, 'home/companies', ctx)
 
 
@@ -118,6 +118,7 @@ def groups(request, slug):
 	except:
 		ctx['featured_company'] = companies.first()
 	# ctx['reviews'] = Review.objects.all().order_by('-create_date')	
+	ctx['featured_num_reviews'] = len(Review.objects.filter(company=ctx['featured_company']))
 	
 	return base.render(request, 'home/groups', ctx)
 
@@ -136,6 +137,7 @@ def show_company(request, company_id):
 
 	ctx['company'] = this_company
 	ctx['groups'] = this_company.groups.all()
+	ctx['num_reviews'] = len(Review.objects.filter(company=this_company))
 	ctx['reviews'] = Review.objects.filter(company=this_company).order_by('-create_date')
 
 	# reviewed_company=         Company.objects.get(name=co)

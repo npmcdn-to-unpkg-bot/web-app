@@ -52,6 +52,8 @@ urlpatterns = patterns('',
     url(r'^api/logout_user/$', api.logout_user),
     url(r'^api/create_user/$', api.create_user),
     url(r'^api/post_review/$', api.post_review),
+    url(r'^api/get_company_names/$', api.get_company_names),
+    
 
     # url(r'^about/$', home.about),
     # url(r'^about/(\w+)/$', home.bio),

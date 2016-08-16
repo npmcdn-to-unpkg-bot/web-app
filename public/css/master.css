@@ -1,6 +1,21 @@
 #master-container {
   font-family: helvetica;
 }
+h1 {
+  margin-bottom: 0.17em;
+}
+#rating-description {
+  font-family: 'Helvetica', sans-serif;
+  color: #808080;
+  font-size: 14px;
+  margin: 10px 0px 10px 0px;
+}
+#big-number {
+  font-size: 56px;
+}
+#company-num-reviews {
+  word-spacing: 8px;
+}
 .container-fluid {
   padding: 0px;
 }
@@ -73,7 +88,7 @@ ul.flash-messages#info {
   font-size: 10px;
 }
 .page-content .main-review {
-  border-bottom: 1px solid #808080;
+  border-top: 1px solid #808080;
   margin-top: 10px;
   margin-bottom: 10px;
   padding: 10px;
@@ -113,11 +128,11 @@ ul.flash-messages#info {
   font-family: 'Poiret One', cursive;
 }
 .jumbotron {
+  text-align: center;
   transition: all 0.4s ease-in-out;
   background-color: #0ff;
   margin-bottom: 0;
   border-radius: none;
-  text-align: center;
 }
 .jumbotron a {
   color: #000;
@@ -128,7 +143,7 @@ ul.flash-messages#info {
   font-family: 'Poiret One', cursive;
 }
 .jumbotron #slogan {
-  text-align: center;
+  text-align: 2s;
   font-family: 'Poiret One', cursive;
 }
 .jumbotron #write-a-review {
@@ -142,32 +157,38 @@ ul.flash-messages#info {
   font-size: 24px;
 }
 .jumbotron #post-review {
-  border: 1px solid #00f;
   background: #fff;
   text-align: center;
   width: 700px;
   margin: auto;
-  padding-top: 25px;
 }
-transition: width 2s #rating-input,
-transition: width 2s #company-input {
+#company-autoform {
+  margin-top: 20px;
+}
+#slider-container {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  width: 100%;
+  text-align: center;
+}
+#rating-input #company-input {
   width: 150px;
   margin: auto;
 }
-transition: width 2s #review-input {
+#rating-input #review-input {
   width: 500px;
   height: 200px;
   margin: auto;
 }
-transition: width 2s #tag-input {
-  width: 150px;
+#rating-input #tag-input.form-control {
+  width: 50px !important;
   margin: auto;
 }
-transition: width 2s #reason-input {
+#rating-input #reason-input {
   width: 250px;
   margin: auto;
 }
-transition: width 2s #featured {
+#rating-input #featured {
   text-align: center;
   font-family: 'Quicksand', sans-serif;
   font-size: 14px;

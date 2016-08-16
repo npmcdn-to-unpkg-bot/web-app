@@ -128,6 +128,20 @@ class Company(ObjectModel):
         self.save()
         return self.rating
 
+    def get_rating_glyph(self):
+        g=''
+        try:
+            rating_num = self.get_rating()
+            if rating_num < 0:
+                g='<span class="glyphicon glyphicon-volume-up" aria-hidden="true" style="color:red;"></span> '*rating_num
+            elif rating_num == 0:
+                g='<span class="glyphicon glyphicon-volume-up" aria-hidden="true" style="color:cyan;"></span> '*rating_num
+            elif rating_num > 0 and rating_num <= 10:
+                g='<span class="glyphicon glyphicon-volume-up" aria-hidden="true" style="color:#05cc47;"></span> '*rating_num
+            return g     
+        except:
+            return g
+
 
 ### Grouping / Industry should borderline be a one-to-one...?
 class CompanyGroup(ObjectModel):
@@ -141,7 +155,8 @@ class CompanyGroup(ObjectModel):
 class Review(ObjectModel):
     company = ForeignKey('Company', related_name='reviews')
     body = TextField(null=True, blank=True)
-    review_rating = IntegerField(default=5) #out of 10
+    # review_rating = IntegerField(default=5) #out of 20... 0 will represent -10, 10 will represent 0, etc
+    review_rating = IntegerField(default=5) #out of 10...
     frequency_used = IntegerField(default=3) #out of 5 (ie, all of the time, some of the time)
     reason = CharField(max_length=200) # (ie, bc theyre a conglomerate)
     tags = ManyToManyField('ReviewTag', null=True, blank=True, db_table='review_tag_map')
@@ -159,6 +174,24 @@ class Review(ObjectModel):
 
     def has_user(self):
         return True if self.user_id > 0 else False
+
+
+    def get_rating_glyph(self):
+        g=''
+        try:
+            if self.review_rating < 0:
+                g='<span class="glyphicon glyphicon-volume-up" aria-hidden="true" style="color:red;"></span> '*abs(self.review_rating)
+            elif self.review_rating == 0:
+                g='<span class="glyphicon glyphicon-volume-up" aria-hidden="true" style="color:cyan;"></span> '*1
+            elif self.review_rating > 0 and self.review_rating <= 10:
+                g='<span class="glyphicon glyphicon-volume-up" aria-hidden="true" style="color:#05cc47;"></span> '*self.review_rating
+        except:
+            logger.info("Failed to get rating glyph")
+            return g
+
+        return g    
+
+
 
     # def reason(self):
     #     return self.reason

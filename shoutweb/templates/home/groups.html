@@ -14,8 +14,8 @@
     <p id="featured">Featured Company</p>
     <div id="featured-company">
       <h1 id="jumbotron-header-main">{{ featured_company.name }}</h1>
-      <div id="featured-company-rating">{{ featured_company.rating }}/10</div>
-      <div id="featured-company-description">{{ featured_company.description }}</div>
+      <div id="featured-company-rating">{{ featured_company.get_rating_glyph|safe }}</div>
+      <div id="company-num-reviews">reviewed <span id="big-number">{{ featured_num_reviews }}</span> times</div>
     </div>
   </div>
 </div>
@@ -33,7 +33,7 @@
       {% for company in companies %}
       <div class="company-box">
         <div id="name"><a href="/companies/{{ company.id }}">{{ company.name }}</a></div>
-        <div id="rating">Rating: {{ company.rating }}/10</div>
+        <div id="rating">Rating: {{ company.get_rating_glyph|safe }}</div>
         <div id="description">{{ company.description }}</div>
       </div>
       {% endfor %}

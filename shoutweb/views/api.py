@@ -1,4 +1,4 @@
-import logging
+import logging, json
 from django.contrib.auth import logout
 # from django.contrib import auth
 # from django.contrib.auth.decorators import login_required
@@ -12,6 +12,7 @@ from shoutweb.services import api
 # from shoutweb.views import base
 # from shoutweb.const import *
 from IPython import embed
+from django.core import serializers
 logger = logging.getLogger(__name__)
 
 @csrf_exempt
@@ -70,4 +71,21 @@ def post_review(request):
 	except:
 		messages.error(request, 'Failed to post %s')
 	return HttpResponseRedirect('/')
+	# return base.json_response()
+
+
+@csrf_exempt
+def get_company_names(request):
+	params = _extract_params(request, 'GET')
+	try:
+		c = api.get_company_names()
+		logger.info("passed get company names")
+	except:
+		# messages.error(request, 'Failed to post %s')
+		logger.info("DID NOTget company names")
+
+	# json_data = serializers.serialize("json", c)
+	return HttpResponse(json.dumps(c), status=200, content_type='application/json')
+	# return base.json_response(json_data)
+	# return c
 	# return base.json_response()
