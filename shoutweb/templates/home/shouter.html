@@ -1,0 +1,96 @@
+{% extends "layouts/master.html" %}
+<!-- { load filters } -->
+
+{% block head_begin %}
+{% endblock %}
+
+{% block head_end %}
+{% endblock %}
+
+{% block content %}
+
+<h1></h1>
+<div class="jumbotron">
+    <h1 id="jumbotron-header-main">ayyyy {{ user.username }} <a href="#" id="newman" onclick="ya()">new</a></h1>
+	<div id="company-num-reviews"><span id="big-number">{{ reviews_count }}</span> reviews total, <span id="big-number">{{ positive_reviews_count }}</span> positive reviews, <span id="big-number">{{ negative_reviews_count }}</span> negative reviews</div>
+<!-- 	<div id="company-num-reviews"><span id="big-number">{{ positive_reviews_count }}</span> positive reviews</div>
+	<div id="company-num-reviews"><span id="big-number">{{ negative_reviews_count }}</span> negative reviews</div> -->
+</div>
+
+<div id="new-review-post">
+	<div id="yaya">
+
+
+	</div>
+
+
+</div>
+
+
+<div class="page-content">
+  <div class="row">
+    <!-- <div id="column1" class="col-sm-6 col-md-4"> -->
+    <div class="col-md-4" id="companies-column-left">
+      <!-- <h1 id="companies-header">favorites!</h1> -->
+      <div id="trending-up-container">
+        <h2 id="trending-up-header">favorites!</h2>
+
+      </div>
+
+      <div id="trending-down-container">
+        <h2 id="trending-down-header">not so great favorites...</h2>
+
+      </div>
+    </div>
+
+
+    <div class="col-md-8" id="reviews-column-right">
+    <h1 id="reviews-header">REVIEWS</h1>
+
+    {% for review in reviews %}
+    <div class="review-box">
+      <div id="review-box-header">
+        <a href="companies/{{ review.company.id }}" id="review-company-name">{{ review.company.name }}</a> {{ review.get_user }}
+        <div id="review-rating">
+          {{ review.get_rating_glyph|safe }}
+          {% for e in review.tags.all %}
+            <span id="review-tag-specific">({{ e.name }})</span>
+          {% endfor %}
+        </div>
+      </div>
+
+
+      <div id="body">{{ review.body }}</div>
+      <div id="reason">Reason for using: {{ review.reason }}</div>
+
+      <div id="create-date">{{ review.create_date }}</div>
+    </div>
+    {% endfor %}
+    </div>
+  </div>
+
+
+  <div class="row">
+
+	</div>
+</div>
+
+
+
+
+
+
+<script>
+
+// $("#newman").on('click', function() {
+
+function ya() {
+	$("#new-review-post").show();
+
+}
+
+</script>
+
+</div>
+
+{% endblock %}

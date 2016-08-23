@@ -3,18 +3,20 @@ from django.db import models, transaction
 from django.db.models import *
 from shoutweb import settings
 from django.contrib.auth.models import User
+import logging
 # import logging, math, traceback, uuid, re, phonenumbers
 #from django.contrib.auth.models import User
 #from django.db.models.signals import post_save
 #from functools import partial
 #from localflavor.us.models import USStateField, PhoneNumberField
 #from timezone_field import TimeZoneField
+from IPython import embed
 #from tinymce.models import HTMLField
 #from web import utils
 #from web.const import *
 #from web.exceptions import *
 
-#logger = logging.getLogger(__name__)
+logger = logging.getLogger(__name__)
 
 
 class BaseModel(Model):
@@ -115,7 +117,7 @@ class Company(ObjectModel):
         db_table = 'company'
 
     def __str__(self):
-        return "%s: %s" % (self.name, self.rating)
+        return "%s: %s" % (self.name, self.get_rating())
         # return "{}: {}".format(self.user_id, self.message)
 
     def get_rating(self):
@@ -135,13 +137,17 @@ class Company(ObjectModel):
             if rating_num < 0:
                 g='<span class="glyphicon glyphicon-volume-up" aria-hidden="true" style="color:red;"></span> '*rating_num
             elif rating_num == 0:
-                g='<span class="glyphicon glyphicon-volume-up" aria-hidden="true" style="color:cyan;"></span> '*rating_num
+                g='<span class="glyphicon glyphicon-volume-up" aria-hidden="true" style="color:cyan;"></span> '*1
             elif rating_num > 0 and rating_num <= 10:
                 g='<span class="glyphicon glyphicon-volume-up" aria-hidden="true" style="color:#05cc47;"></span> '*rating_num
+            # logger.info("Retrieved rating glyph for a value of %s" % rating_num)
             return g     
         except:
+            logger.debug("Failed to retrieve rating glyph for %s" % self.name)
             return g
 
+    def get_tags(self):
+        return self.reviews.values('reason').distinct()
 
 ### Grouping / Industry should borderline be a one-to-one...?
 class CompanyGroup(ObjectModel):
@@ -191,7 +197,8 @@ class Review(ObjectModel):
 
         return g    
 
-
+    def __str__(self):
+        return str(self.review_rating)
 
     # def reason(self):
     #     return self.reason
@@ -213,4 +220,17 @@ class Shouter(ExtendedUserModel):
         db_table = 'shouter'
         verbose_name = 'Shouter'
 
+
+    def get_positive_reviews(self):
+        logger.info("Retrieving POSITIVE reviews for Shouter: %s" % self.user.username)       
+        return self.user.reviews.filter(review_rating__gt=0)
+
+
+    def get_negative_reviews(self):
+        logger.info("Retrieving NEGATIVE reviews for Shouter: %s" % self.user.username)       
+        return self.user.reviews.filter(review_rating__lt=0)
+
+    def reviews(self):
+        # print("yeaaaaaaayeaaaaaaayeaaaaaaayeaaaaaaa")
+        return self.user.reviews.all()
 

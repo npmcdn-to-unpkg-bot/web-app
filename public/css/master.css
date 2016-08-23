@@ -22,8 +22,34 @@ h1 {
 .navbar {
   margin-bottom: 0;
 }
+#review-tag-specific {
+  font-size: 12px;
+  font-weight: bold;
+}
 a:hover {
   text-decoration: none;
+}
+#new-review-post {
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  background: #00f;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.25;
+  z-index: 1;
+}
+#new-review-post #yaya {
+  z-index: 2;
+  background: #fff !important;
+  height: 300px;
+  width: 40%;
+  margin: auto;
+  top: 250px;
+  left: 30%;
+  position: absolute;
+  opacity: 1;
 }
 ul.flash-messages {
   transition: all 0.4s ease-in-out;
@@ -78,6 +104,9 @@ ul.flash-messages#info {
   padding: 10px;
   overflow: hidden;
   clear: both;
+}
+.page-content .review-box #review-box-header {
+  margin-bottom: 15px;
 }
 .page-content .review-box #review-company-name {
   font-size: 18px;

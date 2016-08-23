@@ -5,7 +5,7 @@ from django import http, shortcuts
 # from django.core.servers.basehttp import FileWrapper
 from django.conf import settings
 from django.utils.encoding import smart_str
-# from web import const, utils
+# from shoutweb import const, utils
 
 logger = logging.getLogger(__name__)
 

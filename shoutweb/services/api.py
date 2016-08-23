@@ -1,6 +1,7 @@
 import logging
 # import traceback
-# from web import utils
+from datetime import date, datetime, timedelta
+from shoutweb.utils import *
 from shoutweb.views import base
 from django.contrib.auth.models import User
 from shoutweb.views import *
@@ -37,7 +38,6 @@ def login_user(request, **kwargs):
 	return data
 
 
-
 def create_user(**kwargs):
 	# params = request.POST.dict() if method == 'GET' else request.POST.dict()
 	print("yooo")
@@ -59,6 +59,7 @@ def create_user(**kwargs):
 
 
 
+### TRENDS STUFF ###
 
 def get_positive_trending_companies():
 	trending_list = []
@@ -95,11 +96,20 @@ def get_negative_trending_companies():
 	return trending_list
 
 
-def get_todays_reviews_count():
-	return True
 
 
+### REVIEWS STUFF ###
+def get_todays_reviews_count(company=None):
+	today = get_today()
+	td = (today - timedelta(days=0))
+	logger.info("Checking for reviews from today")
+	if company:
+		reviews_from_today = len(Review.objects.filter(create_date=today, company=company))
+	else:
+		reviews_from_today = len(Review.objects.filter(create_date=today))
 
+	logger.info("%s reviews today" % reviews_from_today)
+	return reviews_from_today
 
 
 

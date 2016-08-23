@@ -35,9 +35,9 @@
           <div id="rating-description">neither good nor bad</div>
 
           <textarea type="review" class="form-control" id="review-input" placeholder="review here"></textarea>
-          <input type="reason" class="form-control" id="reason-input" placeholder="why did you use this company?"></input>
+          <input type="reason" class="form-control" id="reason-input" placeholder="why did you use this company?" hidden></input>
 
-          <select class="form-control" id="tag-input">
+          <select class="form-control" id="tag-input" hidden>
               <option disabled selected>Tag this message</option>
             {% for tag in review_tags %}
               <option value="{{ tag.name }}">{{ tag }}</option>
@@ -92,8 +92,17 @@
 
     {% for review in reviews %}
     <div class="review-box">
-      <a href="companies/{{ review.company.id }}" id="review-company-name">{{ review.company.name }}</a> {{ review.get_user }}
-      <div id="review-rating">{{ review.get_rating_glyph|safe }}</div>
+      <div id="review-box-header">
+        <a href="companies/{{ review.company.id }}" id="review-company-name">{{ review.company.name }}</a> {{ review.get_user }}
+        <div id="review-rating">
+          {{ review.get_rating_glyph|safe }}
+          {% for e in review.tags.all %}
+            <span id="review-tag-specific">({{ e.name }})</span>
+          {% endfor %}
+        </div>
+      </div>
+
+
       <div id="body">{{ review.body }}</div>
       <div id="reason">Reason for using: {{ review.reason }}</div>
 
@@ -114,6 +123,12 @@
 
 <script>
   // slider functionality
+    // $('textarea#review-input').on('click', function() {
+    $('textarea#review-input').keypress(function() {
+      $('input#reason-input').show();
+      $('select#tag-input').show();
+    })
+
     $( "#slider" ).slider({
       animate: "slow",
       min: -5,

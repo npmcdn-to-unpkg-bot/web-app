@@ -30,6 +30,8 @@ urlpatterns = patterns('',
     url(r'^stats/$', home.stats),
     url(r'^companies$', home.companies),
     url(r'^companies/(\w*)$', home.show_company),
+    
+    url(r'^users/(\d+)$', home.shouter),
 
 
 

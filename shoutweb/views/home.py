@@ -1,9 +1,9 @@
 import logging
 # import traceback
-# from web import utils
 from shoutweb.views import base
 from shoutweb.views import *
 from django.contrib import messages
+from django.contrib.auth.models import User
 from django.http import Http404
 from django.db.models import Max
 from django.views.decorators.csrf import csrf_exempt
@@ -34,6 +34,9 @@ def home(request):
 	ctx['user'] = user
 	logger.info("User: %s" % user)
 
+
+	ctx['todays_reviews'] = api.get_todays_reviews_count()
+	messages.info(request, '%s reviews today' % ctx['todays_reviews'])
 
 	# print(ctx['reviews'])
 	# for e in ctx['reviews']:
@@ -86,6 +89,31 @@ def signup(request):
 	return base.render(request, 'guest/signup', ctx)
 
 
+def shouter(request, shouter_id):
+	ctx = {}
+	ctx['PAGE_TITLE'] = 'SHOUT | Shouter'
+	# ctx['user'] = user = User.objects.get(pk=shouter_id)
+	ctx['user'] = user = request.user
+	shouter=user.shouter
+	ctx['reviews'] = user.reviews.all()
+	ctx['reviews_count'] = len(ctx['reviews'])
+
+	ctx['positive_reviews'] = shouter.get_positive_reviews()
+	# ctx['positive_reviews'] = user.reviews.filter(review_rating__gt=0)
+	ctx['positive_reviews_count'] = len(ctx['positive_reviews'])
+
+
+
+
+	ctx['negative_reviews'] = shouter.get_negative_reviews()
+	ctx['negative_reviews_count'] = len(ctx['negative_reviews'])
+
+	# ctx['negative_reviews'] = shouter.reviews.filter(review_rating__lt=0)
+	# ctx['negative_reviews_count'] = len(ctx['negative_reviews'])
+
+
+	return base.render(request, 'home/shouter', ctx)
+
 def companies(request):
 	ctx = {}
 	ctx['PAGE_TITLE'] = 'SHOUT | Companies'
@@ -129,8 +157,6 @@ def show_company(request, company_id):
 	ctx = {}
 	ctx['PAGE_TITLE'] = 'SHOUT | %s' % this_company
 
-	messages.info(request, 'Co: %s' % this_company)
-
 	max_rating = Company.objects.all().aggregate(Max('rating'))['rating__max']
 	# Best rating
 	# Worst rating
@@ -139,7 +165,8 @@ def show_company(request, company_id):
 	ctx['groups'] = this_company.groups.all()
 	ctx['num_reviews'] = len(Review.objects.filter(company=this_company))
 	ctx['reviews'] = Review.objects.filter(company=this_company).order_by('-create_date')
-
+	ctx['todays_reviews'] = api.get_todays_reviews_count(company=this_company)
+	messages.info(request, '%s reviews today' % ctx['todays_reviews'])
 	# reviewed_company=         Company.objects.get(name=co)
 
 	return base.render(request, 'home/company', ctx)
