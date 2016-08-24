@@ -93,7 +93,7 @@
     {% for review in reviews %}
     <div class="review-box">
       <div id="review-box-header">
-        <a href="companies/{{ review.company.id }}" id="review-company-name">{{ review.company.name }}</a> {{ review.get_user }}
+        <a href="companies/{{ review.company.id }}" id="review-company-name">{{ review.company.name }}</a> <a href="/users/{{ review.user.id }}">{{ review.get_user }}</a>
         <div id="review-rating">
           {{ review.get_rating_glyph|safe }}
           {% for e in review.tags.all %}

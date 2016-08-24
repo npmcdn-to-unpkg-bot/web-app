@@ -11,6 +11,7 @@ import logging
 #from localflavor.us.models import USStateField, PhoneNumberField
 #from timezone_field import TimeZoneField
 from IPython import embed
+import operator
 #from tinymce.models import HTMLField
 #from web import utils
 #from web.const import *
@@ -230,7 +231,62 @@ class Shouter(ExtendedUserModel):
         logger.info("Retrieving NEGATIVE reviews for Shouter: %s" % self.user.username)       
         return self.user.reviews.filter(review_rating__lt=0)
 
+
     def reviews(self):
         # print("yeaaaaaaayeaaaaaaayeaaaaaaayeaaaaaaa")
         return self.user.reviews.all()
+
+
+    def get_shout_clout_score(self):
+        shout_clout_score = 0
+        t = 0
+        reviews = self.user.reviews.all()
+        for each_review in reviews:
+            t += each_review.review_rating
+
+        try: 
+            shout_clout_score = float(t / len(reviews))
+        except:
+            shout_clout_score = None
+        return shout_clout_score
+
+
+    def get_favorite_companies(self):
+        favs = self.user.reviews.filter(review_rating__gt=0)
+        ret = {}
+        for each_fav in favs:
+            c = each_fav.company.name
+            if ret.get(c):
+                ret[c] += 1
+            else:
+                ret[c] = 1
+        print(ret)
+        return ret
+
+        # sorted_ret = sorted(ret.items(), key=operator.itemgetter(1))
+        # return sorted_ret
+
+        # print(ret)
+        # return (ret.keys(), ret.values())
+
+
+    def get_hated_companies(self):
+        hateds = self.user.reviews.filter(review_rating__lt=0)
+        ret = {}
+
+        for each_hated in hateds:
+            c = each_hated.company.name
+            print(ret.get(c))
+            if ret.get(c):
+                ret[c] += 1
+            else:
+                ret[c] = 1
+
+
+        print(ret)
+        return ret
+
+
+
+
 

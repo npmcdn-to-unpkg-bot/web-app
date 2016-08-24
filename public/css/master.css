@@ -13,6 +13,9 @@ h1 {
 #big-number {
   font-size: 56px;
 }
+#big-company {
+  font-size: 28px;
+}
 #company-num-reviews {
   word-spacing: 8px;
 }
@@ -28,6 +31,13 @@ h1 {
 }
 a:hover {
   text-decoration: none;
+}
+#shouter-score-header {
+  font-family: 'Poiret One', cursive;
+  font-size: 14px;
+}
+#shouter-score-header #shouter-score {
+  font-size: 28px;
 }
 #new-review-post {
   display: none;

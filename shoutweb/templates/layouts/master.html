@@ -68,7 +68,7 @@
                 </form>
 
                 {% if user.is_authenticated %}
-                  <li class="bold-link"><a href="/">{{ user.first_name }}</a></li>
+                  <li class="bold-link"><a href="/">{{ this_user.first_name }}</a></li>
                 <li><a class="bold-link" href="/logout">Log Out</a></li>
                 {% else %}
                   <li class="bold-link" id="login-button"><a href="/login">Log In</a></li>                

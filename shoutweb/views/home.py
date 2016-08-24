@@ -19,7 +19,6 @@ from shoutweb.services import api
 
 logger = logging.getLogger(__name__)
 
-
 def home(request):
 	user = request.user
 	if not user.is_authenticated():
@@ -90,26 +89,30 @@ def signup(request):
 
 
 def shouter(request, shouter_id):
-	ctx = {}
+	ctx={}
+	ctx['this_user'] = this_user = User.objects.get(pk=shouter_id)
 	ctx['PAGE_TITLE'] = 'SHOUT | Shouter'
-	# ctx['user'] = user = User.objects.get(pk=shouter_id)
-	ctx['user'] = user = request.user
-	shouter=user.shouter
-	ctx['reviews'] = user.reviews.all()
+	shouter=this_user.shouter
+	ctx['reviews'] = this_user.reviews.all()
 	ctx['reviews_count'] = len(ctx['reviews'])
 
 	ctx['positive_reviews'] = shouter.get_positive_reviews()
 	# ctx['positive_reviews'] = user.reviews.filter(review_rating__gt=0)
 	ctx['positive_reviews_count'] = len(ctx['positive_reviews'])
 
-
-
-
 	ctx['negative_reviews'] = shouter.get_negative_reviews()
 	ctx['negative_reviews_count'] = len(ctx['negative_reviews'])
 
+
 	# ctx['negative_reviews'] = shouter.reviews.filter(review_rating__lt=0)
 	# ctx['negative_reviews_count'] = len(ctx['negative_reviews'])
+
+
+	ctx['shout_clout_score'] = shouter.get_shout_clout_score()
+
+
+	ctx['shouter_fav_companies'] = shouter.get_favorite_companies()
+	ctx['shouter_hated_companies'] = shouter.get_hated_companies()
 
 
 	return base.render(request, 'home/shouter', ctx)
