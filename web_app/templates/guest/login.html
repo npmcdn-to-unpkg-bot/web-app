@@ -1,0 +1,36 @@
+{% extends "layouts/guest.html" %}
+<!-- { load filters } -->
+
+{% block head_begin %}
+
+
+{% endblock %}
+
+
+{% block head_end %}
+{% endblock %}
+
+{% block content %}
+
+<div class="login-pages">
+  <div id="login-container-box">
+
+    <form class="form" id="login-container" method="post">{% csrf_token %}
+      <p id="login-header" hidden>Login</p>
+      <div class="form-group">
+        <div class="form-group">
+        <input class="form-control" name="email"  id="email" placeholder="email"/>
+        <input type="password" class="form-control" name="password" id="password" placeholder="password"/>
+        </div>
+        <button type="submit" class="btn btn-default" id="submit-review" onclick="">login</button>
+      </div>
+
+      <a id="signup-link" href="/signup">sign up</a>
+    </form>
+
+  </div>
+</div>
+
+
+
+{% endblock %}

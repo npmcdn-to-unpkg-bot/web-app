@@ -32,11 +32,11 @@ h1 {
 a:hover {
   text-decoration: none;
 }
-#shouter-score-header {
+#web_apper-score-header {
   font-family: 'Poiret One', cursive;
   font-size: 14px;
 }
-#shouter-score-header #shouter-score {
+#web_apper-score-header #web_apper-score {
   font-size: 28px;
 }
 #new-review-post {

@@ -1,0 +1,54 @@
+{% extends "layouts/master.html" %}
+<!-- { load filters } -->
+
+{% block head_begin %}
+
+
+{% endblock %}
+
+
+{% block head_end %}
+{% endblock %}
+
+{% block content %}
+
+<div class="jumbotron">
+
+  <h1 id="jumbotron-header-main">web_app</h1>
+  {% if user.is_authenticated %}
+    <p id=""><span id="">make your cool app</span></p>
+  {% else %}
+    <a href="/login"><p id="">make your cool app</p></a>
+  {% endif %}
+
+</div>
+
+<div class="page-content">
+  <div class="row">
+
+    <div class="col-md-4" >
+
+
+    </div>
+
+
+    <div class="col-md-8" id="">
+
+    </div>
+  </div>
+
+
+  <div class="row">
+
+	</div>
+</div>
+
+
+
+
+<script>
+
+</script>
+
+
+{% endblock %}

@@ -37,13 +37,13 @@ migrations:
 	$(MANAGE) makemigrations
 
 migrate:
-	$(MANAGE) migrate shoutweb
+	$(MANAGE) migrate web_app
 
 css:
-	stylus -w -o public/css shoutweb/frontend/stylus
+	stylus -w -o public/css web_app/frontend/stylus
 
 js:
-	$(COFFEE) -w -o public/js shoutweb/frontend/coffee
+	$(COFFEE) -w -o public/js web_app/frontend/coffee
 
 
 

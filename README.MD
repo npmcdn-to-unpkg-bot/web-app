@@ -1,1 +1,2 @@
-# Shout Project
+# Web_app Project
+# Clone, Venv, pip 
